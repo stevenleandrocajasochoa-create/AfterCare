@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11101c">
+  <meta name="description" content="AFTERCARE: tu espacio personal para registrar hábitos y cuidar tu bienestar.">
+  <title>AFTERCARE — Tu bienestar, a tu ritmo</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="public/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="AFTERCARE inicio">
+        <span class="brand-mark">✦</span><span>AFTER<span class="accent">CARE</span></span>
+      </a>
+      <p class="sidebar-label">TU ESPACIO</p>
+      <nav class="nav">
+        <button class="nav-item active" data-section="dashboard"><span>◫</span> Resumen</button>
+        <button class="nav-item" data-section="habits"><span>✳</span> Hábitos</button>
+        <button class="nav-item" data-section="chat"><span>✧</span> Asistente</button>
+      </nav>
+      <div class="sidebar-note">
+        <div class="orb"></div>
+        <p class="eyebrow">UN DÍA A LA VEZ</p>
+        <p class="note-title">No tienes que hacerlo perfecto.</p>
+        <p class="muted small">Los pequeños pasos también cuentan.</p>
+      </div>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Datos guardados en este dispositivo</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="today-label">TU ESPACIO DE BIENESTAR</p>
+          <h1 id="greeting">Hola, bienvenido/a <span class="wave">✦</span></h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="install-btn" hidden title="Instalar aplicación">⇩</button>
+          <button class="profile-chip" id="profile-button" title="Editar nombre"><span class="avatar">A</span><span id="profile-name">Amigo/a</span><span>⌄</span></button>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboard-view">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="pill"><span class="pulse"></span> TU PROGRESO, SIN PRESIONES</span>
+            <h2>Cuida de ti.<br><span class="gradient-text">A tu propio ritmo.</span></h2>
+            <p>Un lugar para observar tus hábitos, reconocer tus avances y construir una rutina que te haga sentir bien.</p>
+            <button class="primary-button" data-go="habits">Registrar un hábito <span>↗</span></button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="ring ring-one"></div><div class="ring ring-two"></div>
+            <div class="hero-star">✦</div><div class="hero-orb"></div>
+            <span class="float-tag tag-one">respira</span><span class="float-tag tag-two">continúa</span>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><p class="eyebrow">HOY</p><h2>Tu resumen diario</h2></div>
+          <span class="date-pill" id="date-pill">Hoy</span>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card water-card">
+            <div class="stat-top"><span class="stat-icon">≈</span><span class="stat-label">Agua</span><span class="stat-symbol">↗</span></div>
+            <div class="stat-value"><span id="water-total">0</span><small> / 8 vasos</small></div>
+            <div class="progress-track"><div class="progress-fill cyan" id="water-progress"></div></div>
+            <div class="stat-foot"><span id="water-foot">Registra tu primer vaso</span><button class="tiny-add" data-quick="water" aria-label="Añadir un vaso de agua">+</button></div>
+          </article>
+          <article class="stat-card movement-card">
+            <div class="stat-top"><span class="stat-icon">↗</span><span class="stat-label">Movimiento</span><span class="stat-symbol">✦</span></div>
+            <div class="stat-value"><span id="move-total">0</span><small> min</small></div>
+            <div class="progress-track"><div class="progress-fill pink" id="move-progress"></div></div>
+            <div class="stat-foot"><span id="move-foot">Cada movimiento cuenta</span><button class="tiny-add" data-quick="movement" aria-label="Añadir movimiento">+</button></div>
+          </article>
+          <article class="stat-card sleep-card">
+            <div class="stat-top"><span class="stat-icon">☾</span><span class="stat-label">Sueño</span><span class="stat-symbol">✧</span></div>
+            <div class="stat-value"><span id="sleep-total">0</span><small> horas</small></div>
+            <div class="progress-track"><div class="progress-fill violet" id="sleep-progress"></div></div>
+            <div class="stat-foot"><span id="sleep-foot">Anota cómo descansaste</span><button class="tiny-add" data-quick="sleep" aria-label="Registrar sueño">+</button></div>
+          </article>
+          <article class="stat-card meals-card">
+            <div class="stat-top"><span class="stat-icon">♡</span><span class="stat-label">Comidas</span><span class="stat-symbol">✦</span></div>
+            <div class="stat-value"><span id="meal-total">0</span><small> registradas</small></div>
+            <div class="progress-track"><div class="progress-fill orange" id="meal-progress"></div></div>
+            <div class="stat-foot"><span id="meal-foot">Registra lo que comiste</span><button class="tiny-add" data-quick="meal" aria-label="Registrar comida">+</button></div>
+          </article>
+        </div>
+
+        <div class="lower-grid">
+          <section class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">CONSTANCIA</p><h3>Tu semana, a tu manera</h3></div><span class="mini-badge">7 días</span></div>
+            <div class="week-chart" id="week-chart" aria-label="Gráfico de registros de los últimos siete días"></div>
+            <div class="chart-legend"><span><i class="legend-dot"></i> Hábitos registrados</span><span id="week-summary">Empieza hoy</span></div>
+          </section>
+          <section class="panel quote-panel">
+            <div class="quote-symbol">“</div>
+            <p class="eyebrow">RECUERDA</p>
+            <h3>Tu bienestar no es una competencia.</h3>
+            <p class="muted">Escucha a tu cuerpo, descansa cuando lo necesites y busca apoyo cuando algo te preocupe.</p>
+            <div class="quote-footer"><span class="tiny-spark">✦</span> AFTERCARE NOTES</div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="habits-view">
+        <div class="section-heading page-heading"><div><p class="eyebrow">PEQUEÑOS PASOS</p><h2>Registro de hábitos</h2><p class="muted">Registra cómo va tu día. No hay puntuaciones ni juicios.</p></div></div>
+        <div class="habit-layout">
+          <section class="panel form-panel">
+            <div class="panel-heading"><div><p class="eyebrow">AÑADIR REGISTRO</p><h3>¿Qué quieres anotar?</h3></div><span class="form-spark">✦</span></div>
+            <form id="habit-form">
+              <label for="habit-type">Tipo de hábito</label>
+              <select id="habit-type" required>
+                <option value="water">Agua</option><option value="meal">Comida</option><option value="movement">Actividad física</option><option value="sleep">Sueño / descanso</option><option value="mood">Estado de ánimo</option><option value="note">Nota personal</option>
+              </select>
+              <label for="habit-detail">Detalle</label>
+              <input id="habit-detail" type="text" maxlength="120" placeholder="Ej. Caminé con música, almorcé..." required>
+              <div class="form-row"><div><label for="habit-amount">Cantidad (opcional)</label><input id="habit-amount" type="number" min="0" max="1000" step="0.5" placeholder="Ej. 1"></div><div><label for="habit-unit">Unidad</label><select id="habit-unit"><option value="">Sin unidad</option><option value="vasos">vasos</option><option value="min">minutos</option><option value="horas">horas</option><option value="porciones">porciones</option></select></div></div>
+              <label for="habit-date">Fecha</label><input id="habit-date" type="date" required>
+              <button class="primary-button full-button" type="submit">Guardar registro <span>↗</span></button>
+              <p class="form-hint">Tus registros se guardan localmente en este navegador.</p>
+            </form>
+          </section>
+          <section class="panel records-panel">
+            <div class="panel-heading"><div><p class="eyebrow">TU HISTORIAL</p><h3>Registros recientes</h3></div><button id="export-btn" class="text-button">Exportar datos ↗</button></div>
+            <div id="records-list" class="records-list"></div>
+            <div class="empty-state" id="empty-records"><div class="empty-icon">✧</div><h4>Tu historia empieza aquí</h4><p>Cuando añadas un hábito, aparecerá en esta lista.</p></div>
+            <button id="clear-btn" class="danger-link">Borrar todos mis registros</button>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="chat-view">
+        <div class="section-heading page-heading"><div><p class="eyebrow">UN ESPACIO PARA PREGUNTAR</p><h2>Tu asistente de bienestar</h2><p class="muted">Puedes escribir o usar la voz. Las respuestas de demostración no sustituyen a un profesional.</p></div></div>
+        <div class="chat-layout">
+          <section class="panel chat-panel">
+            <div class="chat-top"><div class="assistant-avatar">✦</div><div><h3>Aftercare AI</h3><p><span class="status-dot"></span> Asistente de demostración</p></div><span class="chat-tag">BETA</span></div>
+            <div class="chat-messages" id="chat-messages" aria-live="polite">
+              <div class="message assistant"><div class="message-avatar">✦</div><div class="bubble"><p>¡Hola! Soy tu asistente de bienestar. Puedo ayudarte a pensar en hábitos sencillos, descanso, organización o manejo del estrés. ¿Qué tienes en mente?</p><span class="message-time">Ahora</span></div></div>
+            </div>
+            <div class="suggestions"><button class="suggestion">Dame una idea para relajarme</button><button class="suggestion">Ayúdame a organizar mi día</button><button class="suggestion">¿Cómo puedo recordar tomar agua?</button></div>
+            <form id="chat-form" class="chat-input-row"><input id="chat-input" type="text" maxlength="500" placeholder="Escribe lo que tienes en mente..." autocomplete="off" required><button type="button" class="voice-button" id="voice-btn" title="Hablar por voz" aria-label="Hablar por voz">◉</button><button type="submit" class="send-button" aria-label="Enviar mensaje">➤</button></form>
+            <p class="chat-disclaimer">Si tienes una preocupación médica, habla con un adulto de confianza o un profesional de salud. En una emergencia, contacta los servicios de emergencia de tu zona.</p>
+          </section>
+          <aside class="panel chat-side"><div class="side-orbit">✧</div><p class="eyebrow">CÓMO USARLO</p><h3>Una conversación amable, sin presión.</h3><ul><li>Pregunta por hábitos y organización.</li><li>Usa el micrófono si tu navegador lo permite.</li><li>Pulsa el icono de audio para escuchar la respuesta.</li></ul><div class="privacy-note"><span>⌑</span><p><strong>Tu privacidad</strong><br>Los mensajes no se guardan como historial permanente. No compartas datos privados.</p></div><p class="small muted" id="ai-mode-note">Modo local: respuestas de demostración.</p></aside>
+        </div>
+      </section>
+
+      <footer class="footer"><span>✦ AFTERCARE</span><span>Hecho para acompañarte, no para exigirte.</span><button id="privacy-btn">Privacidad y datos</button></footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <dialog id="name-dialog" class="modal"><form method="dialog" id="name-form"><div class="modal-spark">✦</div><h3>¿Cómo te llamamos?</h3><p class="muted">Puedes usar un apodo o dejar el nombre predeterminado.</p><input id="name-input" maxlength="30" placeholder="Tu apodo"><div class="modal-actions"><button class="secondary-button" value="cancel">Cancelar</button><button class="primary-button" id="save-name" value="save">Guardar</button></div></form></dialog>
+  <dialog id="privacy-dialog" class="modal"><form method="dialog"><div class="modal-spark">⌑</div><h3>Privacidad y datos</h3><p>Los hábitos se guardan en el almacenamiento local de este navegador. Si borras los datos del navegador o cambias de dispositivo, pueden perderse. Usa “Exportar datos” para guardar una copia. No introduzcas información médica sensible ni datos personales en el chat.</p><div class="modal-actions"><button class="primary-button" value="close">Entendido</button></div></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
